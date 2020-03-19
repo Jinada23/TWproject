@@ -1,0 +1,36 @@
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="@Url.Action("Index","Home")">𝐆-𝐂𝐨𝐦𝐩𝐚𝐧𝐲</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="@Url.Action("About","Home")">Who we are<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Register
+              </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="@Url.Action("RegMus","Home")">Register as a musician</a>
+                        <a class="dropdown-item" href="@Url.Action("RegWritter","Home")">Register as a writter</a>
+                        <a class="dropdown-item" href="@Url.Action("RegProducer","Home")">Register as a producer</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","Login")">Login</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Contact 
+              </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="https://www.facebook.com/batedrumujack">Our Facebook</a>
+                        <a class="dropdown-item" href="https://www.youtube.com/watch?v=9EcjWd-O4jI">Our Youtube</a>
+                        <a class="dropdown-item" href="https://www.instagram.com/dumbravag/">Our Instagram</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>

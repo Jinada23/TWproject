@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="height: 70px;"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <form method="post" action="/Login/Index">
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary ">Submit</button>
+                </div>
+            </form>
+        </div>
+
+
+
+
+        <div class="col-md-8 col-sm-8">
+            <h3 align="center">CAN ART REALLY CHANGE THE WORLD? </h3>
+            <p align="center">
+                Is one of the biggest questions that comes to mind when we really, truly think about the value of art: can art make a difference? Many movements in art history have tried to change society in one way or another: Dada artists advocated
+                for silliness and nonsensical behaviour in daily life as the only response to the horrors of the First World War. Fluxus sought to "promote a revolutionary flood and tide in art, promote living art, anti-art" through its network of
+                international artists. And groups like the Situationist International played a major role in the revolutionary Paris events of 1968 by exposing the divisions between artists, consumers, and the means of production. And of course art
+                can take the form of protest, addressing political and social issues with direct action. So we know that art movements can change society, but what about art today? Are there works of art that have changed the way you think or feel
+                about something? Can all of those small changes add up to something bigger?
+            </p>
+        </div>
+    </div>
+</div>
