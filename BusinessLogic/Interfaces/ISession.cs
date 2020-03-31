@@ -10,6 +10,8 @@ namespace eUseControl.BusinessLogic.Interfaces
     public interface ISession
     {
         ULoginResp UserLogin(ULoginData data);
+        ULoginResp UserRegister(URegistrationData data);
+
 
     }
 }

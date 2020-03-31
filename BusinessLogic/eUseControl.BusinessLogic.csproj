@@ -58,22 +58,62 @@
   <ItemGroup>
     <Compile Include="Core\AdminApi.cs" />
     <Compile Include="Core\UserApi.cs" />
-    <Compile Include="DBModel\UserContext.cs" />
     <Compile Include="Interfaces\ISession.cs" />
+    <Compile Include="Migrations\202003311115409_AddUserTable.cs" />
+    <Compile Include="Migrations\202003311115409_AddUserTable.designer.cs">
+      <DependentUpon>202003311115409_AddUserTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003311129431_AddUserTable1.cs" />
+    <Compile Include="Migrations\202003311129431_AddUserTable1.designer.cs">
+      <DependentUpon>202003311129431_AddUserTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003311557485_AddUserTable2.cs" />
+    <Compile Include="Migrations\202003311557485_AddUserTable2.designer.cs">
+      <DependentUpon>202003311557485_AddUserTable2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003311611389_AddUserTable3.cs" />
+    <Compile Include="Migrations\202003311611389_AddUserTable3.designer.cs">
+      <DependentUpon>202003311611389_AddUserTable3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyBusinessLogic.cs" />
     <Compile Include="SessionBL.cs" />
+    <Compile Include="UserContext.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Extensions.Microsoft.DependencyInjection, Version=0.0.0.0, Culture=neutral, PublicKeyToken=e767ac9c89543656, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.Extensions.Microsoft.DependencyInjection.7.0.0\lib\netstandard2.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="DBModel\Seed\" />
+    <EmbeddedResource Include="Migrations\202003311115409_AddUserTable.resx">
+      <DependentUpon>202003311115409_AddUserTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003311129431_AddUserTable1.resx">
+      <DependentUpon>202003311129431_AddUserTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003311557485_AddUserTable2.resx">
+      <DependentUpon>202003311557485_AddUserTable2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003311611389_AddUserTable3.resx">
+      <DependentUpon>202003311611389_AddUserTable3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

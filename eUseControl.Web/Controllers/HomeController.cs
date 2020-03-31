@@ -12,22 +12,11 @@ namespace eUseControl.Web.Controllers
         {
             return View();
         }
+        
         public ActionResult About()
         {
             return View();
         }
 
-        public ActionResult RegMus()
-        {
-            return View();
-        }
-        public ActionResult RegWritter()
-        {
-            return View();
-        }
-        public ActionResult RegProducer()
-        {
-            return View();
-        }
     }
 }

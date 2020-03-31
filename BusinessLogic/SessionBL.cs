@@ -9,13 +9,19 @@ using System.Threading.Tasks;
 
 namespace eUseControl.BusinessLogic
 {
-    public class SessionBL : UserApi, ISession
+    public class SessionBL : ISession
     {
+        private readonly UserApi userApi = new UserApi();
+
         public ULoginResp UserLogin(ULoginData data)
         {
-            return new ULoginResp { Status = true };
+            return userApi.UserLoginAction(data);
         }
 
+        public ULoginResp UserRegister(URegistrationData data)
+        {
+            return userApi.UserRegisterAction(data);
+        }
 
     }
 }

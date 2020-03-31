@@ -56,6 +56,8 @@
   <ItemGroup>
     <Compile Include="Entities\User\ULoginData.cs" />
     <Compile Include="Entities\User\ULoginResp.cs" />
+    <Compile Include="Entities\User\URegistrationData.cs" />
+    <Compile Include="UserDbTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enums\" />
@@ -77,6 +79,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
