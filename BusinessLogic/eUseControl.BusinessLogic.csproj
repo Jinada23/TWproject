@@ -75,6 +75,10 @@
     <Compile Include="Migrations\202003311611389_AddUserTable3.designer.cs">
       <DependentUpon>202003311611389_AddUserTable3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004011151175_AddUserTable4.cs" />
+    <Compile Include="Migrations\202004011151175_AddUserTable4.designer.cs">
+      <DependentUpon>202004011151175_AddUserTable4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyBusinessLogic.cs" />
     <Compile Include="SessionBL.cs" />
@@ -99,6 +103,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -113,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003311611389_AddUserTable3.resx">
       <DependentUpon>202003311611389_AddUserTable3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004011151175_AddUserTable4.resx">
+      <DependentUpon>202004011151175_AddUserTable4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

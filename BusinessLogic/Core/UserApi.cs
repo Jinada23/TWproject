@@ -1,12 +1,9 @@
-﻿using AutoMapper;
-using Domain.Entities.User;
+﻿using Domain.Entities.User;
 using MyProject.BusinessLogic.DbModel;
 using MyProject.Domain.Entities.User;
 using System;
-using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace eUseControl.BusinessLogic.Core
 {
@@ -37,14 +34,11 @@ namespace eUseControl.BusinessLogic.Core
             UsersDbTable result;
 
             var user = new UsersDbTable();
-
             user.Name = data.Name;
             user.Username = data.Username;
             user.Password = data.Password;
             user.Info = data.Info;
             user.RegisterDate = data.RegisterDateTime;
-
-            //var user = _mapper.Map<URegistrationData, UsersDbTable>(data);
 
             try {
 
@@ -61,17 +55,16 @@ namespace eUseControl.BusinessLogic.Core
                     {
                         return new ULoginResp
                         {
-                            Status = true,
+                            Status = false,
                             StatusMsg = "This username already exists."
                         };
                     }
                 }
             }
-            catch (Exception ex)
+            catch (DbEntityValidationException e)
             {
                 throw;
             }
-
         }
     }
 }

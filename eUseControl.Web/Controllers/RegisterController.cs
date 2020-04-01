@@ -24,9 +24,17 @@ namespace eUseControl.Web.Controllers
         {
             return View();
         }
+        public ActionResult RegisterMusician()
+        {
+            return View();
+        }
+        public ActionResult RegisterProducer()
+        {
+
+            return View();
+        }
 
         [HttpPost]
-        // GET: Register
         public ActionResult RegisterWriter(UserRegister data)
         {
            
@@ -56,12 +64,62 @@ namespace eUseControl.Web.Controllers
 
             return View();
         }
+       
+        [HttpPost]
         public ActionResult RegisterMusician(UserRegister data)
         {
+            if (ModelState.IsValid)
+            {
+
+                URegistrationData login = new URegistrationData
+                {
+                    Name = data.Name,
+                    Username = data.Username,
+                    Password = data.Password,
+                    Info = data.Info,
+                    RegisterDateTime = DateTime.Now
+                };
+
+                var userRegistration = _session.UserRegister(login);
+                if (userRegistration.Status)
+                {
+                    ViewBag.Name = "Successful registration!";
+                }
+                else
+                {
+                    ModelState.AddModelError("", userRegistration.StatusMsg);
+                    return View();
+                }
+            }
             return View();
         }
+
+        [HttpPost]
         public ActionResult RegisterProducer(UserRegister data)
         {
+            if (ModelState.IsValid)
+            {
+
+                URegistrationData login = new URegistrationData
+                {
+                    Name = data.Name,
+                    Username = data.Username,
+                    Password = data.Password,
+                    Info = data.Info,
+                    RegisterDateTime = DateTime.Now
+                };
+
+                var userRegistration = _session.UserRegister(login);
+                if (userRegistration.Status)
+                {
+                    ViewBag.Name = "Successful registration!";
+                }
+                else
+                {
+                    ModelState.AddModelError("", userRegistration.StatusMsg);
+                    return View();
+                }
+            }
             return View();
         }
     }

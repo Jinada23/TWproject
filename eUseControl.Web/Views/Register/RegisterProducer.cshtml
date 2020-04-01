@@ -3,75 +3,78 @@
     ViewBag.Title = "Register as Producer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="container" style="margin-top: 70px;">
     <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-6">
             @Html.ValidationSummary(true)
-            @using (Html.BeginForm("RegisterWriter", "Register", FormMethod.Post, new { @id = "RegisterForm" }))
+            @Html.ValidationMessageFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Username)
+            @Html.ValidationMessageFor(m => m.Password)
+            @Html.ValidationMessageFor(m => m.Info)
+            @using (Html.BeginForm("RegisterProducer", "Register", FormMethod.Post, new { @id = "RegisterForm" }))
             {
-                    <div class="form-row col">
-                        <div class="col-form-label" style="width: 50%;">
-                            @Html.LabelFor(m => m.Name, new { @class = "control-label" })
-                            @Html.TextBoxFor(m => m.Name, new
-                       {
-                           placeholder = "Giovani Creion",
-                           title = "Please enter your name",
-                           name = "name",
-                           value = "",
-                           id = "name",
-                           @class = "form-control"
-                       })
-                        </div>
-                        <div class="col-form-label" style="width: 50%;">
-                            @Html.LabelFor(m => m.Password, new { @class = "control-label" })
-                            @Html.TextBoxFor(m => m.Password, new
-                       {
-                           placeholder = "*********",
-                           type = "password",
-                           title = "Please enter your password",
-                           value = "",
-                           name = "password",
-                           id = "password",
-                           @class = "form-control"
-                       })
-                        </div>
-                    </div>
-
-                    <div class="form-row col">
-                        @Html.Label("Your email adress")
-                        @Html.TextBoxFor(m => m.Username, new
+                <div class="form-row col">
+                    <div class="col-form-label" style="width: 50%;">
+                        @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Name, new
                    {
-                       placeholder = "example@gmail.com",
-                       title = "Please enter your username",
-                       name = "username",
+                       placeholder = "Giovani Creion",
+                       title = "Please enter your name",
+                       name = "name",
                        value = "",
-                       id = "username",
+                       id = "name",
                        @class = "form-control"
                    })
                     </div>
-
-                    <div class="form-row col" style="margin-top:20px;>
-                        @Html.Label("Something about your producing experience")
-                        @Html.TextAreaFor(m => m.Info, new
-                       {
-                           placeholder = "Your favourite genre, what soft do you use, etc.",
-                           title = "Please enter description",
-                           value = "",
-                           rows = 8,
-                           name = "Information",
-                           id = "information",
-                           @class = "form-control"
-                       })
+                    <div class="col-form-label" style="width: 50%;">
+                        @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.Password, new
+                   {
+                       placeholder = "*********",
+                       type = "password",
+                       title = "Please enter your password",
+                       value = "",
+                       name = "password",
+                       id = "password",
+                       @class = "form-control"
+                   })
                     </div>
+                </div>
 
-                    <div class="text-center" style="margin-top:20px;">
-                        <button type="button" class="btn btn-light btn-register">Register</button>
-                    </div>
+                <div class="form-row col">
+                    @Html.Label("Your email adress")
+                    @Html.TextBoxFor(m => m.Username, new
+               {
+                   placeholder = "example@gmail.com",
+                   title = "Please enter your email/username",
+                   name = "username",
+                   value = "",
+                   id = "username",
+                   @class = "form-control"
+               })
+                </div>
 
-                    <div style="margin-top:30px" class="text-center">
-                        <h4>@ViewBag.Name</h4>
-                    </div>
+                <div class="form-row col" style="margin-top:20px;>
+                    @Html.Label("Something about your producing experience")
+                    @Html.TextAreaFor(m => m.Info, new
+                   {
+                       placeholder = "Your favourite genre, what soft do you use, etc.",
+                       title = "Please enter description",
+                       value = "",
+                       rows = 8,
+                       name = "Information",
+                       id = "information",
+                       @class = "form-control"
+                   })
+                </div>
+
+                <div class="text-center" style="margin-top:20px;">
+                    <button type="submit" class="btn btn-light btn-register">Register</button>
+                </div>
+
+                <div style="margin-top:30px" class="text-center">
+                    <h4>@ViewBag.Name</h4>
+                </div>
             }
         </div>
         <div class="col-md-6 col-sm-6 col-xs-6">

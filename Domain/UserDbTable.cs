@@ -10,32 +10,31 @@ namespace MyProject.Domain.Entities.User
 {
     public class UsersDbTable
     {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         
-    [Required]
-    [Display(Name = "Name")]
-    [StringLength(30, MinimumLength = 4)]
-    public string Name { get; set; }
+        [Required]
+        [Display(Name = "Name")]
+        [StringLength(30, MinimumLength = 4, ErrorMessage = "Name must be more than 4 characters")]
+        public string Name { get; set; }
 
-    [Required]
-    [Display(Name = "Password")]
-    [StringLength(40, MinimumLength = 8, ErrorMessage = "Password must be more than 8 characters")]
-    public string Password { get; set; }
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
         
-    [Required]
-    [EmailAddress]
-    [Display(Name = "Email Address")]
-    [StringLength(30)]
-    public string Username { get; set; }
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email Address")]
+        [StringLength(30)]
+        public string Username { get; set; }
 
-    [Required]
-    [Display(Name = "Info")]
-    [StringLength(300, MinimumLength = 4)]
-    public string Info { get; set; }
+        [Required]
+        [Display(Name = "Info")]
+        [StringLength(300)]
+        public string Info { get; set; }
 
         [DataType(DataType.DateTime)]
-    public DateTime RegisterDate { get; set; }
-    }
+        public DateTime RegisterDate { get; set; }
+        }
 }

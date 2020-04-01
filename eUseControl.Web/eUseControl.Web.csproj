@@ -164,7 +164,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\FooterStyle.css" />
+    <Content Include="Content\MyCssClass.css" />
     <Content Include="Content\img\banner.png" />
     <Content Include="Content\img\howdowe.jpg" />
     <Content Include="Content\img\howStarted.png" />

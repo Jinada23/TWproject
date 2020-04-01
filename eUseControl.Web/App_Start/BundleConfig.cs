@@ -12,7 +12,7 @@ namespace eUseControl.Web.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             //bootstrap css
-            bundles.Add(new StyleBundle("~/bundles/bootstrap/css").Include("~/Content/bootstrap.css", "~/Content/FooterStyle.css"));
+            bundles.Add(new StyleBundle("~/bundles/bootstrap/css").Include("~/Content/bootstrap.css", "~/Content/MyCssClass.css"));
 
             //bootstrap js
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js"));
