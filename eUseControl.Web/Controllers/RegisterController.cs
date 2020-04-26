@@ -47,7 +47,8 @@ namespace eUseControl.Web.Controllers
                     Username = data.Username,
                     Password = data.Password,
                     Info = data.Info,
-                    RegisterDateTime = DateTime.Now
+                    RegisterDateTime = DateTime.Now,
+                    Role = 1,
                 };
 
                 var userRegistration = _session.UserRegister(login);
@@ -77,7 +78,8 @@ namespace eUseControl.Web.Controllers
                     Username = data.Username,
                     Password = data.Password,
                     Info = data.Info,
-                    RegisterDateTime = DateTime.Now
+                    RegisterDateTime = DateTime.Now,
+                    Role = 2,
                 };
 
                 var userRegistration = _session.UserRegister(login);
@@ -106,7 +108,8 @@ namespace eUseControl.Web.Controllers
                     Username = data.Username,
                     Password = data.Password,
                     Info = data.Info,
-                    RegisterDateTime = DateTime.Now
+                    RegisterDateTime = DateTime.Now,
+                    Role = 3,
                 };
 
                 var userRegistration = _session.UserRegister(login);

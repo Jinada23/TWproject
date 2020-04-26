@@ -1,0 +1,97 @@
+﻿@using Domain.Entities.User;
+@model List<UserData>
+@{
+    ViewBag.Title = "Artists";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="playlist-section spad">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2">
+                <div class="section-title">
+                    <h2>Artists</h2>
+                </div>
+            </div>
+            <div class="col-2">
+                <h5>
+                    (@Model.Count total)
+                </h5>
+            </div>
+            <div class="col-1">
+                <h5>Sort by</h5>
+            </div>
+            <div class="col-1">
+                <a href=""><h5 style="color: #132a69;font-weight: 400;">Name</h5></a>
+            </div>
+            <div class="col-1">
+                <a href=""><h5 style="color: #132a69;font-weight: 400;">Type</h5></a>
+            </div>
+            <div class="col-2">
+                <a href=""><h5 style="color: #132a69;font-weight: 400;">Registration Data</h5></a>
+            </div>
+            <div class="col-1">
+                <h5>Find by name</h5>
+            </div>
+            <div class="col-2">
+                @using (Html.BeginForm())
+                {
+
+                    @Html.TextBox("searchString")
+                }
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            @{
+                var index = 0;
+                while (index < Model.Count)
+                {
+                    var users = Model.Skip(index).Take(4).ToList();
+
+                    <div class="row">
+
+                        @foreach (var user in users)
+                        {
+                            <div class="col-md-3">
+                                <h5>@user.Name</h5>
+                                @if (user.Role == 0)
+                                {
+                                    <span>Rol: Administrator</span>
+
+                                }@if (user.Role == 1)
+                                {
+                                    <span>Rol: Writer</span>
+
+                                }
+                                @if (user.Role == 2)
+                                {
+                                    <span>Rol: Musician</span>
+
+                                }
+                                @if (user.Role == 3)
+                                {
+                                    <span>Rol: Producer</span>
+
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    index += 4;
+                }
+            }
+        </div>
+
+        @*@for (int i = 0; i < Model.Count; i += 4)
+            {
+                for (int j = 0; j < 4; j++) {
+                    if (i + j < Model.Count)
+                    {
+                        <p>@Model[i + j].Name</p>
+                    }
+                }
+            }*@
+
+    </div>
+</section>
+

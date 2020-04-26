@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "MyPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <section class="songs-details-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="song-details-box">
+                        <h3>Artist's likes</h3>
+                        <ul>
+                            <li><strong>Genre:</strong><span>electro, drum &amp; base, minimal</span></li>
+                            <li><strong>Tags:</strong><span>quitar, piano, music, electronic music, minimal, chill music, pop, cultural, live, popular</span></li>
+                            <li><strong>Instruments:</strong><span>quitar, piano, drums, bass</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="song-details-box">
+                                <h3>About the Artist</h3>
+                                <div class="artist-details">
+                                    <img src="@Url.Content("~/Content/img/no-photo.jpg")" alt="">
+                                    <div class="ad-text">
+                                        @if (Session["Logged"] != null)
+                                        {
+                                            <h5>@Session["name"]</h5>
+                                            if ((int)Session["prof"] == 0)
+                                            {
+                                                <span>Administrator</span>
+                                            }
+                                            if ((int)Session["prof"] == 1)
+                                            {
+                                                <span>Writer</span>
+                                            }
+                                            if ((int)Session["prof"] == 2)
+                                            {
+                                                <span>Musician</span>
+                                            }
+                                            if ((int)Session["prof"] == 3)
+                                            {
+                                                <span>Producer</span>
+                                            }
+                                            <span>Registred from: @Session["date"]</span>
+                                            <p>@Session["Info"]</p>
+
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+

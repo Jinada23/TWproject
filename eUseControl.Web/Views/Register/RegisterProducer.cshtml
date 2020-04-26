@@ -13,6 +13,7 @@
             @Html.ValidationMessageFor(m => m.Info)
             @using (Html.BeginForm("RegisterProducer", "Register", FormMethod.Post, new { @id = "RegisterForm" }))
             {
+                @Html.AntiForgeryToken()
                 <div class="form-row col">
                     <div class="col-form-label" style="width: 50%;">
                         @Html.LabelFor(m => m.Name, new { @class = "control-label" })
@@ -78,7 +79,7 @@
             }
         </div>
         <div class="col-md-6 col-sm-6 col-xs-6">
-            <img src="@Url.Content("~/Content/img/songproducer.jpg")" style="margin: 0px; width: 100%;">
+            <img src="@Url.Content("~/Content/img/songproducer.jpg")" style="margin: 0px; width: 100%;"><hr />
             <h4 align="center">"You make your mistakes to learn how to get to the good stuff." – Quincy Jones</h4>
         </div>
     </div>

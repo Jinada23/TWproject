@@ -79,6 +79,14 @@
     <Compile Include="Migrations\202004011151175_AddUserTable4.designer.cs">
       <DependentUpon>202004011151175_AddUserTable4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004160805138_UserTabl.cs" />
+    <Compile Include="Migrations\202004160805138_UserTabl.designer.cs">
+      <DependentUpon>202004160805138_UserTabl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004261024431_AddUserTable5.cs" />
+    <Compile Include="Migrations\202004261024431_AddUserTable5.designer.cs">
+      <DependentUpon>202004261024431_AddUserTable5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyBusinessLogic.cs" />
     <Compile Include="SessionBL.cs" />
@@ -104,6 +112,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -121,6 +132,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004011151175_AddUserTable4.resx">
       <DependentUpon>202004011151175_AddUserTable4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004160805138_UserTabl.resx">
+      <DependentUpon>202004160805138_UserTabl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004261024431_AddUserTable5.resx">
+      <DependentUpon>202004261024431_AddUserTable5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

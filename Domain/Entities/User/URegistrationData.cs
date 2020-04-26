@@ -13,7 +13,7 @@ namespace Domain.Entities.User
         public string Password { get; set; }
         public string Info { get; set; }
         public DateTime RegisterDateTime { get; set; }
-
+        public int Role { get; set; }
 
     }
 }

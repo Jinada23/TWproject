@@ -10,5 +10,10 @@ namespace Domain.Entities.User
     {
         public bool Status { get; set; }
         public string StatusMsg { get; set; }
+        public string Name { get; set; }
+        public string Info { get; set; }
+        public int Role { get; set; }
+        public DateTime date { get; set; }
+
     }
 }

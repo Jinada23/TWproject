@@ -1,36 +1,57 @@
-﻿<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="@Url.Action("Index","Home")">𝐆-𝐂𝐨𝐦𝐩𝐚𝐧𝐲</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="@Url.Action("About","Home")">Who we are<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Register
-              </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="@Url.Action("RegisterMusician","Register")">Register as a musician</a>
-                        <a class="dropdown-item" href="@Url.Action("RegisterWriter","Register")">Register as a writer</a>
-                        <a class="dropdown-item" href="@Url.Action("RegisterProducer","Register")">Register as a producer</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index","Login")">Login</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Contact 
-              </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="https://www.facebook.com/batedrumujack">Our Facebook</a>
-                        <a class="dropdown-item" href="https://www.youtube.com/watch?v=9EcjWd-O4jI">Our Youtube</a>
-                        <a class="dropdown-item" href="https://www.instagram.com/dumbravag/">Our Instagram</a>
-                    </div>
-                </li>
-            </ul>
+﻿<header class="header-section clearfix">
+    <a href="@Url.Action("Index","Home")" class="site-logo">
+        <img src="@Url.Content("~/Content/img/companylogo.png")" alt="">
+    </a>
+    <div class="header-right">
+        <div class="user-panel">
+            @if (Session["Logged"] == null)
+            {
+                <a href="@Url.Action("Index","Login")" class="login">Login</a>
+            }
+            else { 
+            if ((bool)Session["Logged"])
+            {
+                <a href="@Url.Action("MyPage","Home")">@Session["User"]</a>
+                <a href="@Url.Action("Loggout","Login")">Loggout</a>
+
+            }
+            else
+            {
+                <a href="@Url.Action("Index","Login")" class="login">Login</a>
+            }
+            }
         </div>
-    </nav>
+    </div>
+    <ul class="main-menu">
+        <li><a href="@Url.Action("Index","Home")">Home</a></li>
+        <li><a href="@Url.Action("About","Home")">About</a></li>
+        <li><a href="@Url.Action("Artists","Home")">Artists</a></li>
+        <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+        @if (Session["Logged"] == null)
+        {
+            <li>
+                <a href="#" class="register">Create an account</a>
+                <ul class="sub-menu">
+                    <li><a href="@Url.Action("RegisterMusician", "Register")">As musician</a></li>
+                    <li><a href="@Url.Action("RegisterWriter", "Register")">As writer</a></li>
+                    <li><a href="@Url.Action("RegisterProducer", "Register")">As producer</a></li>
+                </ul>
+            </li>
+        }
+        else {
+            if ((bool)Session["Logged"] == false)
+            {
+            <li>
+                <a href="#" class="register">Create an account</a>
+                <ul class="sub-menu">
+                    <li><a href="@Url.Action("RegisterMusician", "Register")">As musician</a></li>
+                    <li><a href="@Url.Action("RegisterWriter", "Register")">As writer</a></li>
+                    <li><a href="@Url.Action("RegisterProducer", "Register")">As producer</a></li>
+                </ul>
+            </li>
+            }
+            else {}
+        }
+    </ul>
+    
+</header>

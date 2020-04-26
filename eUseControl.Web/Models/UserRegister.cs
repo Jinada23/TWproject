@@ -10,7 +10,7 @@ namespace eUseControl.Web.Models
     {
         [Required(ErrorMessage = "• The Name field is empty.")]
         [Display(Name = "Name")]
-        [RegularExpression(@"^[A-Za-z]+", ErrorMessage = "• The Name field is not a valid name.")]
+        [RegularExpression(@"^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$", ErrorMessage = "• The Name field is not a valid name.")]
         [StringLength(30, MinimumLength = 4, ErrorMessage = "• Name must be more than 4 characters.")]
         public string Name { get; set; }
 
@@ -28,6 +28,7 @@ namespace eUseControl.Web.Models
         [Display(Name = "Info")]
         [StringLength(300, ErrorMessage = "• Information must be less then 300 characters.")]
         public string Info { get; set; }
+
 
     }
 }

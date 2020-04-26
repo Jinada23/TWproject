@@ -23,5 +23,14 @@ namespace eUseControl.BusinessLogic
             return userApi.UserRegisterAction(data);
         }
 
+        public List<UserData> userData(string searchString, string sortType)
+        {
+            return userApi.GetAllUsers(searchString, sortType);
+        }
+
+        public bool DeleteUser(ULoginData user)
+        {
+            return userApi.DeleteUser(user);
+        }
     }
 }

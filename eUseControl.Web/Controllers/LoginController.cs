@@ -22,7 +22,20 @@ namespace eUseControl.Web.Controllers
         //GET: Login
         public ActionResult Index()
         {
-            return View();
+            if (Session["logged"] != null) { 
+            if ((bool)Session["logged"] == false)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("MyPage", "Home");
+            }
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -43,6 +56,20 @@ namespace eUseControl.Web.Controllers
                 var userLogin = _session.UserLogin(data);
                 if (userLogin.Status)
                 {
+                    Session["User"] = login.Username;
+                    Session["Logged"] = true;
+                    Session["info"] = userLogin.Info;
+                    Session["name"] = userLogin.Name;
+                    Session["date"] = userLogin.date;
+                    Session["prof"] = userLogin.Role;
+                    if (userLogin.Role == 0)
+                    {
+                        Session["isAdmin"] = true;
+                    }
+                    else
+                    {
+                        Session["isAdmin"] = false;
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -52,6 +79,13 @@ namespace eUseControl.Web.Controllers
                 }
             }
             return View();
+        }
+
+        public ActionResult Loggout()
+        {
+            Session["Logged"] = false;
+            Session["isAdmin"] = false;
+            return RedirectToAction("Index", "Login");
         }
     }
 }

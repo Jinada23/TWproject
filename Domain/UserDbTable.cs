@@ -36,5 +36,7 @@ namespace MyProject.Domain.Entities.User
 
         [DataType(DataType.DateTime)]
         public DateTime RegisterDate { get; set; }
-        }
+
+        public int Role { get; set; }
+    }
 }
