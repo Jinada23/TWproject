@@ -1,79 +1,99 @@
 ﻿@using Domain.Entities.User;
 @model List<UserData>
 @{
-    ViewBag.Title = "Artists";
+    ViewBag.Title = "G-Company | Artists";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section class="playlist-section spad">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2">
+            <div class="col-5 col-lg-4">
                 <div class="section-title">
                     <h2>Artists</h2>
+                    <h5>(@Model.Count)</h5>
                 </div>
             </div>
-            <div class="col-2">
-                <h5>
-                    (@Model.Count total)
-                </h5>
+            <div class="col-1 col-lg-6">
+
             </div>
-            <div class="col-1">
-                <h5>Sort by</h5>
-            </div>
-            <div class="col-1">
-                <a href=""><h5 style="color: #132a69;font-weight: 400;">Name</h5></a>
-            </div>
-            <div class="col-1">
-                <a href=""><h5 style="color: #132a69;font-weight: 400;">Type</h5></a>
-            </div>
-            <div class="col-2">
-                <a href=""><h5 style="color: #132a69;font-weight: 400;">Registration Data</h5></a>
-            </div>
-            <div class="col-1">
-                <h5>Find by name</h5>
-            </div>
-            <div class="col-2">
-                @using (Html.BeginForm())
+            <div class="col-6 col-lg-2">
+                <h5 style="margin:10px;">Find by name</h5>
+                @using (Html.BeginForm("Artists", "Home", FormMethod.Post))
                 {
 
                     @Html.TextBox("searchString")
                 }
             </div>
         </div>
-
+        <div class="row" style="margin-top:20px;">
+            <div class="col-0 col-lg-7">
+            </div>
+            <div class="col-3 col-lg-1">
+                <h5>Sort by</h5>
+            </div>
+            <div class="col-3 col-lg-1">
+                <h5>
+                    @Html.ActionLink("Name", "Artists", new { sortType = @ViewBag.SortNameParameter }, new { @style = "color: #132a69;font-weight: 400;" })
+                </h5>
+            </div>
+            <div class="col-3 col-lg-1">
+                <h5>
+                    @Html.ActionLink("Type", "Artists", new { sortType = @ViewBag.SortTypeParameter }, new { @style = "color: #132a69;font-weight: 400;" })
+                </h5>
+            </div>
+            <div class="col-3 col-lg-2">
+                <h5>
+                    @Html.ActionLink("Register Date", "Artists", new { sortType = @ViewBag.SortRegistParameter }, new { @style = "color: #132a69;font-weight: 400;" })
+                </h5>
+            </div>
+        </div>
+        <hr>
         <div class="container-fluid">
             @{
                 var index = 0;
                 while (index < Model.Count)
                 {
                     var users = Model.Skip(index).Take(4).ToList();
-
-                    <div class="row">
-
+                    <div class="row" style="margin-bottom:30px;">
                         @foreach (var user in users)
                         {
-                            <div class="col-md-3">
-                                <h5>@user.Name</h5>
-                                @if (user.Role == 0)
+                            <div class="col-6 col-lg-3" style="margin-top:15px; text-align:center;">
+                                <a href="@Url.Action("Users","User", new { user.Id })">
+                                    @if (user.ImgUrl == null)
+                                    {
+                                        <img class="artist-info" src="@Url.Content("~/Content/img/no-photo.jpg")">
+                                    }
+                                    else
+                                    {
+                                        <img class="artist-info" src="@user.ImgUrl">
+                                    }
+                                    <h5 style="margin-top:10px;">@user.Name</h5>
+                                </a>
+                                @*@if (user.Role == 0)
+                                    {
+                                        <span>Role: Administrator</span>
+                                    }@if (user.Role == 1)
+                                    {
+                                        <span>Role: Writer</span>
+                                    }
+                                    @if (user.Role == 2)
+                                    {
+                                        <span>Role: Musician</span>
+                                    }
+                                    @if (user.Role == 3)
+                                    {
+                                        <span>Role: Producer</span>
+                                    }*@
+                                @switch (user.Role)
                                 {
-                                    <span>Rol: Administrator</span>
-
-                                }@if (user.Role == 1)
-                                {
-                                    <span>Rol: Writer</span>
-
-                                }
-                                @if (user.Role == 2)
-                                {
-                                    <span>Rol: Musician</span>
-
-                                }
-                                @if (user.Role == 3)
-                                {
-                                    <span>Rol: Producer</span>
-
+                                    case 0:<span>Administrator</span> break;
+                                    case 1: <span>Writer</span> break;
+                                    case 2: <span>Musician</span> break;
+                                    case 3: <span>Producer</span>break;
+                                    default: break;
                                 }
                             </div>
+
                         }
                     </div>
 
@@ -84,12 +104,12 @@
 
         @*@for (int i = 0; i < Model.Count; i += 4)
             {
-                for (int j = 0; j < 4; j++) {
-                    if (i + j < Model.Count)
-                    {
-                        <p>@Model[i + j].Name</p>
-                    }
-                }
+            for (int j = 0; j < 4; j++) {
+            if (i + j < Model.Count)
+            {
+            <p>@Model[i + j].Name</p>
+            }
+            }
             }*@
 
     </div>

@@ -1,24 +1,34 @@
-﻿<header class="header-section clearfix">
+﻿@using Domain.Entities.User;
+
+<header class="header-section clearfix">
     <a href="@Url.Action("Index","Home")" class="site-logo">
         <img src="@Url.Content("~/Content/img/companylogo.png")" alt="">
     </a>
     <div class="header-right">
         <div class="user-panel">
-            @if (Session["Logged"] == null)
+            @if (Session["User"] == null)
             {
                 <a href="@Url.Action("Index","Login")" class="login">Login</a>
-            }
-            else { 
-            if ((bool)Session["Logged"])
-            {
-                <a href="@Url.Action("MyPage","Home")">@Session["User"]</a>
-                <a href="@Url.Action("Loggout","Login")">Loggout</a>
-
             }
             else
             {
-                <a href="@Url.Action("Index","Login")" class="login">Login</a>
-            }
+                if (((UserData)Session["User"]).Status == true)
+                {
+                    if ((bool)Session["isAdmin"] == true)
+                    {
+                        <a style="color:gold" href="@Url.Action("Admin","Admin")">@(((UserData)Session["user"]).Username)</a>
+                    }
+                    else
+                    {
+                        <a style="color:gold" href="@Url.Action("Users","User", new { ((UserData)Session["user"]).Id } )">@(((UserData)Session["user"]).Name)</a>
+                    }
+                    <a href="@Url.Action("Loggout","Login")">Loggout</a>
+
+                }
+                else
+                {
+                    <a href="@Url.Action("Index","Login")" class="login">Login</a>
+                }
             }
         </div>
     </div>
@@ -27,10 +37,11 @@
         <li><a href="@Url.Action("About","Home")">About</a></li>
         <li><a href="@Url.Action("Artists","Home")">Artists</a></li>
         <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
-        @if (Session["Logged"] == null)
+
+        @if (Session["User"] == null || ((UserData)Session["User"]).Status == false)
         {
             <li>
-                <a href="#" class="register">Create an account</a>
+                <a href="#registerLinks" class="register">Create an account</a>
                 <ul class="sub-menu">
                     <li><a href="@Url.Action("RegisterMusician", "Register")">As musician</a></li>
                     <li><a href="@Url.Action("RegisterWriter", "Register")">As writer</a></li>
@@ -38,20 +49,7 @@
                 </ul>
             </li>
         }
-        else {
-            if ((bool)Session["Logged"] == false)
-            {
-            <li>
-                <a href="#" class="register">Create an account</a>
-                <ul class="sub-menu">
-                    <li><a href="@Url.Action("RegisterMusician", "Register")">As musician</a></li>
-                    <li><a href="@Url.Action("RegisterWriter", "Register")">As writer</a></li>
-                    <li><a href="@Url.Action("RegisterProducer", "Register")">As producer</a></li>
-                </ul>
-            </li>
-            }
-            else {}
-        }
+        else { }
     </ul>
-    
+
 </header>

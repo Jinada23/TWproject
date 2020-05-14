@@ -11,8 +11,11 @@ namespace eUseControl.BusinessLogic.Interfaces
     {
         ULoginResp UserLogin(ULoginData data);
         ULoginResp UserRegister(URegistrationData data);
-        List<UserData> userData(string searchString, string sortType);
-        bool DeleteUser(ULoginData user);
-
+        List<UserData> GetAllUsers(string searchString, string sortType);
+        bool DeleteUser(string user);
+        bool AddAdmin(string user);
+        void LoadProfileInfo(string user, UserPageInputDTO input);
+        UserData userData(string username);
+        UserData getUserByID(int userID);
     }
 }

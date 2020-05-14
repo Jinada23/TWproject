@@ -1,0 +1,255 @@
+﻿@using Domain.Entities.User;
+@model UserData
+@{
+    var user = Model;
+    bool currentUser, isUserOnline = false;
+    if (Session["User"] != null)
+    {
+        if (user.Username == ((UserData)Session["User"]).Username)
+        {
+            currentUser = true;
+        }
+        else
+        {
+            currentUser = false;
+        }
+    }
+    else
+    {
+        currentUser = false;
+    }
+
+    var loggedInUsers = (Dictionary<int, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
+    if (loggedInUsers != null)
+    {
+        foreach (var item in loggedInUsers.ToList())
+        {
+            if (item.Key == user.Id)
+            {
+                isUserOnline = true;
+            }
+        }
+    }
+   
+
+
+    string imgUrl;
+    if (user.ImgUrl == null)
+    {
+        imgUrl = "/Content/img/no-photo.jpg";
+    }
+    else
+    {
+        imgUrl = user.ImgUrl;
+    }
+    ViewBag.Title = "G-Company | My Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="songs-details-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-3 col-lg-3">
+                <div class="song-details-box">
+                    <h3>Artist's likes</h3>
+                    <ul>
+                        <li>
+                            <strong>Genre:</strong>
+                            @if (user.Genre == null)
+                            {
+                                <p>None</p>
+                            }
+                            else
+                            {
+                                <div>
+                                    @user.Genre
+                                </div>
+                            }
+                            @if (currentUser)
+                            {
+                                <a href="#" style="color: goldenrod; font-size:11px; font-weight:500;" data-target="#gnrModal" data-toggle="modal">Edit</a>
+                            }
+                        </li>
+                        <li>
+                            <strong>Tags:</strong>
+                            @if (user.Tags == null)
+                            {
+                                <p>None</p>
+                            }
+                            else
+                            {
+                                <div>
+                                    @user.Tags
+                                </div>
+                            }
+                            @if (currentUser)
+                            {
+                                <a href="#" style="color: goldenrod; font-size:11px; font-weight:500;" data-target="#tagModal" data-toggle="modal">Edit</a>
+                            }
+                        </li>
+                        <li>
+                            <strong>Instruments:</strong>
+                            @if (@user.Instruments == null)
+                            {
+                                <p>None</p>
+                            }
+                            else
+                            {
+                                <div>
+                                    @user.Instruments
+                                </div>
+                            }
+                            @if (currentUser)
+                            {
+                                <a href="#" style="color: goldenrod; font-size:11px; font-weight:500;" data-target="#tagModal" data-toggle="modal">Edit</a>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6">
+                @if (Session["User"] != null && user.Id == ((UserData)Session["User"]).Id)
+                {
+                    <div class="modal fade" id="imgModal" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Enter image's URL</h4>
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    @using (Html.BeginForm("LoadInfo", "User", new { ((UserData)Session["user"]).Id }, FormMethod.Post))
+                                    {
+                                        @Html.TextBoxFor(m => m.ImgUrl)
+                                        <div style="margin:15px; margin-left:30px;">
+                                            <button type="submit" class="btn btn-primary">Confirm</button>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="gnrModal" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Introduce your favourite genre</h4>
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    @using (Html.BeginForm("LoadInfo", "User", new { ((UserData)Session["user"]).Id }, FormMethod.Post))
+                                    {
+
+                                        @Html.TextBoxFor(m => m.Genre)
+                                        <div style="margin:15px; margin-left:30px;">
+                                            <button type="submit" class="btn btn-primary">Confirm</button>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="tagModal" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Add some tags</h4>
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    @using (Html.BeginForm("LoadInfo", "User", new { ((UserData)Session["user"]).Id }, FormMethod.Post))
+                                    {
+
+                                        @Html.TextBoxFor(m => m.Tags)
+                                        <div style="margin:15px; margin-left:30px;">
+                                            <button type="submit" class="btn btn-primary">Confirm</button>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="instrumentModal" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Introduce your instruments</h4>
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    @using (Html.BeginForm("LoadInfo", "User", new { ((UserData)Session["user"]).Id }, FormMethod.Post))
+                                    {
+
+                                        @Html.TextBoxFor(m => m.Instruments)
+                                        <div style="margin:15px; margin-left:30px;">
+                                            <button type="submit" class="btn btn-primary">Confirm</button>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="song-details-box">
+                    <h3>About the Artist</h3>
+                    <div class="artist-details">
+                        @if (currentUser)
+                        {
+                            <a href="#" data-target="#imgModal" data-toggle="modal"><img src="@imgUrl" alt=""></a>
+                        }
+                        else
+                        {
+                            <img src="@imgUrl" alt="">
+                        }
+                        <div class="ad-text">
+                            <h5>
+                                @user.Name
+                                @if (isUserOnline)
+                                {
+                                    <div class="badge badge-success">Online</div>
+                                }
+                                else
+                                {
+                                    <div class="badge badge-danger">Offline</div>
+                                }
+                            </h5>
+                            @*@if (user.Role == 0)
+                                {
+                                    <span>Administrator</span>
+                                }
+                                @if (user.Role == 1)
+                                {
+                                    <span>Writer</span>
+                                }
+                                @if (user.Role == 2)
+                                {
+                                    <span>Musician</span>
+                                }
+                                @if (user.Role == 3)
+                                {
+                                    <span>Producer</span>
+                                }*@
+                            @switch (user.Role)
+                            {
+                                case 0:<span>Administrator</span> break;
+                                case 1: <span>Writer</span> break;
+                                case 2: <span>Musician</span> break;
+                                case 3: <span>Producer</span> break;
+                                default: <span></span>break;
+                            }
+                            <span>Registred from: @user.date</span>
+                            <p>@user.Info</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 col-lg-3">
+
+            </div>
+        </div>
+    </div>
+</section>

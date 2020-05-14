@@ -22,15 +22,16 @@ namespace eUseControl.Web.Controllers
         //GET: Login
         public ActionResult Index()
         {
-            if (Session["logged"] != null) { 
-            if ((bool)Session["logged"] == false)
+            if (Session["User"]!= null)
             {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("MyPage", "Home");
-            }
+                if (((UserData)Session["User"]).Status == false)
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Users", "User", new { ((UserData)Session["User"]).Id });
+                }
             }
             else
             {
@@ -44,7 +45,6 @@ namespace eUseControl.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 ULoginData data = new ULoginData
                 {
                     Username = login.Username,
@@ -52,17 +52,14 @@ namespace eUseControl.Web.Controllers
                     LoginIp = Request.UserHostAddress,
                     LoginDateTime = DateTime.Now
                 };
-
                 var userLogin = _session.UserLogin(data);
                 if (userLogin.Status)
                 {
-                    Session["User"] = login.Username;
-                    Session["Logged"] = true;
-                    Session["info"] = userLogin.Info;
-                    Session["name"] = userLogin.Name;
-                    Session["date"] = userLogin.date;
-                    Session["prof"] = userLogin.Role;
-                    if (userLogin.Role == 0)
+                    UserData userData = _session.userData(data.Username);
+                    userData.Status = true;
+                    Session["User"] = userData;
+
+                    if (userData.Role == 0)
                     {
                         Session["isAdmin"] = true;
                     }
@@ -70,7 +67,33 @@ namespace eUseControl.Web.Controllers
                     {
                         Session["isAdmin"] = false;
                     }
-                    return RedirectToAction("Index", "Home");
+
+                    //if the list exists, add this user to it
+                    if (HttpRuntime.Cache["LoggedInUsers"] != null)
+                    {
+                        //get the list of logged in users from the cache
+                        var loggedInUsers = (Dictionary<int, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
+
+                        if (!loggedInUsers.ContainsKey(userData.Id))
+                        {
+                            //add this user to the list
+                            loggedInUsers.Add(userData.Id, DateTime.Now);
+                            //add the list back into the cache
+                            HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                        }
+                    }
+                    //the list does not exist so create it
+                    else
+                    {
+                        //create a new list
+                        var loggedInUsers = new Dictionary<int, DateTime>();
+                        //add this user to the list
+                        loggedInUsers.Add(userData.Id, DateTime.Now);
+                        //add the list into the cache
+                        HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                    }
+
+                    return RedirectToAction("Users", "User", new { ((UserData)Session["user"]).Id });
                 }
                 else
                 {
@@ -83,8 +106,10 @@ namespace eUseControl.Web.Controllers
 
         public ActionResult Loggout()
         {
-            Session["Logged"] = false;
+            //_session.LogOff(((UserData)Session["User"]).Username);
+            Session["User"] = null;
             Session["isAdmin"] = false;
+
             return RedirectToAction("Index", "Login");
         }
     }

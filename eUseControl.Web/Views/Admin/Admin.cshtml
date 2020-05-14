@@ -4,30 +4,34 @@
 }
 <div class="container">
     <div class="row">
-        <h2 style="margin: 30px; ">Sterge utilizator</h2>
     </div>
-    <hr />
     <div class="row">
-        <div class="col-6">
+        <div class="col">
+            <h5 style="margin: 30px; ">Delete User</h5>
+            <hr />
+
             @using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post))
             {
-
-                @Html.TextBox("name", "", new
-                       {
-                           placeholder = "example@gmail.com",
-                           title = "Please enter your username",
-                           name = "username",
-                           value = "",
-                           id = "username",
-                           @class = "form-control"
-                       })
-                <div class="text-center" style="margin:15px;">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                @Html.TextBox("user")
+                <div style="margin:15px; margin-left:50px;">
+                    <button type="submit" class="btn btn-primary">Delete User</button>
                 </div>
+                <p style="margin-top:10px; color:black;">Status: @TempData["DeleteStatus"]</p>
             }
         </div>
-        <div class="col-6">
-            <p>Result>  @ViewBag.Status</p>
+
+        <div class="col">
+            <h5 style="margin: 30px; ">Add administator</h5>
+            <hr />
+
+            @using (Html.BeginForm("AddAdmin", "Admin", FormMethod.Post))
+            {
+                @Html.TextBox("user")
+                <div style="margin:15px; margin-left:50px;">
+                    <button type="submit" class="btn btn-primary">Add Admin</button>
+                </div>
+                <p style="margin-top:10px;">Status: @TempData["AddStatus"]</p>
+            }
         </div>
     </div>
 </div>

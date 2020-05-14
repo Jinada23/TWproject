@@ -4,10 +4,17 @@
 
 html,
 body {
+	scroll-behavior: smooth;
 	height: 100%;
 	font-family: "Montserrat", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
+}
+
+badge {
+	width:65px; 
+	font-weight:400; 
+	height:17px;
 }
 
 h1,
@@ -614,9 +621,9 @@ Responsive
 }
 
 .copyright {
-	font-size: 11px;
+	font-size: 8px;
 	text-transform: uppercase;
-	font-weight: 500;
+	font-weight: 100;
 	color: #505565;
 	padding: 10px 0 25px;
 }
@@ -1192,6 +1199,7 @@ Artest Page
 .song-details-box {
 	margin-bottom: 30px;
 	overflow: hidden;
+	margin-left: 80px;
 }
 
 .song-details-box h3 {
@@ -1228,7 +1236,6 @@ Artest Page
 }
 
 .artist-details img {
-	float: left;
 	width: 163px;
 	height: 163px;
 	margin-right: 30px;

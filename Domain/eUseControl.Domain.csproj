@@ -58,6 +58,7 @@
     <Compile Include="Entities\User\ULoginResp.cs" />
     <Compile Include="Entities\User\URegistrationData.cs" />
     <Compile Include="Entities\User\UserData.cs" />
+    <Compile Include="Entities\User\UserPageInputDTO.cs" />
     <Compile Include="UserDbTable.cs" />
   </ItemGroup>
   <ItemGroup>

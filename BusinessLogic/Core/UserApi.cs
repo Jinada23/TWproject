@@ -3,14 +3,15 @@ using MyProject.BusinessLogic.DbModel;
 using MyProject.Domain.Entities.User;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Validation;
+using System.Globalization;
 using System.Linq;
 
 namespace eUseControl.BusinessLogic.Core
 {
     public class UserApi
     {
-
         public List<UserData> GetAllUsers(string searchString, string sortType)
         {
             var userData = new List<UserData>();
@@ -60,7 +61,28 @@ namespace eUseControl.BusinessLogic.Core
             }
             return userData;
         }
+        internal UserData UserData(string username)
+        {
+            UsersDbTable result;
+            using (var db = new UserContext())
+            {
+                result = db.Users.FirstOrDefault(u => u.Username == username);
 
+            }
+            return new UserData
+            {
+                Id = result.Id,
+                Username = result.Username,
+                Info = result.Info,
+                Role = result.Role,
+                date = result.RegisterDate,
+                Name = result.Name,
+                ImgUrl = result.ImgUrl,
+                Genre = result.Genre,
+                Tags = result.Tags,
+                Instruments = result.Instruments,
+            };
+        }
         internal ULoginResp UserLoginAction(ULoginData data)
         {
             UsersDbTable result;
@@ -68,20 +90,21 @@ namespace eUseControl.BusinessLogic.Core
             {
                 result = db.Users.FirstOrDefault(u => u.Username == data.Username && u.Password == data.Password);
 
-            }
-            if (result == null)
-            {
-
-                return new ULoginResp
+                if (result == null)
                 {
-                    Status = false,
-                    StatusMsg = "The username or password is incorrect"
-                };
+                    return new ULoginResp
+                    {
+                        Status = false,
+                        StatusMsg = "The username or password is incorrect"
+                    };
+                }
+                else
+                {
+                    return new ULoginResp { Status = true };
+
+                }
             }
-            return new ULoginResp { Status = true, Info = result.Info, Role = result.Role, date = result.RegisterDate, Name = result.Name };
         }
-
-
         internal ULoginResp UserRegisterAction(URegistrationData data)
         {
             UsersDbTable result;
@@ -121,33 +144,61 @@ namespace eUseControl.BusinessLogic.Core
                 throw;
             }
         }
-
         private UserData MapToUserData(UsersDbTable user)
         {
             return new UserData
             {
+                Id = user.Id,
                 Name = user.Name,
                 Info = user.Info,
-                Role = user.Role
+                Role = user.Role,
+                ImgUrl = user.ImgUrl,
+
             };
         }
-
-        internal bool DeleteUser(ULoginData user)
+        internal void LoadProfileInfo(string user, UserPageInputDTO input)
         {
             UsersDbTable result;
             using (var db = new UserContext())
             {
-                result = db.Users.FirstOrDefault(u => u.Username == user.Username);
+                result = db.Users.FirstOrDefault(u => u.Username == user);
                 if (result != null)
                 {
-                    db.Users.Remove(result);
+                    if (input.ImgUrl != null) result.ImgUrl = input.ImgUrl;
+                    if (input.Genre != null) result.Genre = input.Genre;
+                    if (input.Tags != null) result.Tags = input.Tags;
+                    if (input.Instruments != null) result.Instruments = input.Instruments;
                     db.SaveChanges();
-                    return true;
                 }
-                else
+            }
+        }
+        internal UserData getUserByID(int userID)
+        {
+            UsersDbTable result;
+            using (var db = new UserContext())
+            {
+                result = db.Users.FirstOrDefault(u => u.Id == userID);
+
+            }
+            if (result != null)
+            {
+                return new UserData
                 {
-                    return false;
-                }
+                    Id = result.Id,
+                    Username = result.Username,
+                    Info = result.Info,
+                    Role = result.Role,
+                    date = result.RegisterDate,
+                    Name = result.Name,
+                    ImgUrl = result.ImgUrl,
+                    Genre = result.Genre,
+                    Tags = result.Tags,
+                    Instruments = result.Instruments,
+                };
+            }
+            else
+            {
+                return new UserData { };
             }
         }
     }

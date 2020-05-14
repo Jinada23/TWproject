@@ -11,7 +11,8 @@ namespace eUseControl.Web.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             //bootstrap css
-           // bundles.Add(new StyleBundle("~/bundles/bootstrap/css").Include("~/Content/bootstrap.css", "~/Content/MyCssClass.css"));
+           // bundles.Add(new StyleBundle("~/bundles/bootstrap/css").Include("~/Content/bootstrap.css", ));
+            bundles.Add(new StyleBundle("~/bundles/bootstrap/GeorgeCss").Include("~/Content/MyCssClass.css"));
             bundles.Add(new StyleBundle("~/bundles/bootstrap/css").Include("~/Content/bootstrap.min.css"));
             bundles.Add(new StyleBundle("~/bundles/bootstrap/owl").Include("~/Content/owl.carousel.min.css"));
             bundles.Add(new StyleBundle("~/bundles/bootstrap/slicknav").Include("~/Content/slicknav.min.css"));

@@ -38,5 +38,22 @@ namespace MyProject.Domain.Entities.User
         public DateTime RegisterDate { get; set; }
 
         public int Role { get; set; }
+
+        [Display(Name = "ImgUrl")]
+        [StringLength(300)]
+        public string ImgUrl { get; set; }
+        [Display(Name = "Genre")]
+
+        [StringLength(300)]
+        public string Genre { get; set; }
+
+        [Display(Name = "Tags")]
+        [StringLength(300)]
+        public string Tags { get; set; }
+
+        [Display(Name = "Instruments")]
+        [StringLength(300)]
+        public string Instruments { get; set; }
+        
     }
 }

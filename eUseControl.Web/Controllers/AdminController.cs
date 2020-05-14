@@ -27,28 +27,42 @@ namespace eUseControl.Web.Controllers
         }
 
         [HttpPost]
-        [AdminMod]
-        public ActionResult DeleteUser(string name)
+        public ActionResult DeleteUser(string user)
         {
-            var user = new Domain.Entities.User.ULoginData
-            {
-                Username = name
-            };
 
             var userDelet = _session.DeleteUser(user);
             if (userDelet)
             {
-                ViewBag.Status = "Successful deletion!";
+                TempData["DeleteStatus"] = "Successful deletion!";
                 return RedirectToAction("Admin", "Admin");
 
             }
             else
             {
-                ViewBag.Status = "Unsuccessful deletion!";
+                TempData["DeleteStatus"] = "Unsuccessful deletion!";
                 return RedirectToAction("Admin", "Admin");
 
             }
 
+        }
+
+        [HttpPost]
+        public ActionResult AddAdmin(string user)
+        {
+            var userAdmin = _session.AddAdmin(user);
+            if (userAdmin)
+            {
+                TempData["AddStatus"] = "Successful adding!";
+
+            }
+            else
+            {
+                TempData["AddStatus"] = "Unexistent user!";
+                return RedirectToAction("Admin", "Admin");
+
+            }
+           
+            return RedirectToAction("Admin", "Admin");
         }
 
     }
