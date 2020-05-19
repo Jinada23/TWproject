@@ -30,6 +30,7 @@ namespace eUseControl.Web.Controllers
         {
             return View();
         }
+
         public ActionResult Artists(string searchString, string sortType)
         {
             ViewBag.SortNameParameter = sortType == "name" ? "name_desc" : "name";

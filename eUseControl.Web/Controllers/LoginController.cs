@@ -106,7 +106,19 @@ namespace eUseControl.Web.Controllers
 
         public ActionResult Loggout()
         {
-            //_session.LogOff(((UserData)Session["User"]).Username);
+
+            var loggedInUsers = (Dictionary<int, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
+            if (loggedInUsers != null)
+            {
+                foreach (var item in loggedInUsers.ToList())
+                {
+                    if (item.Key == ((UserData)Session["User"]).Id)
+                    {
+                        loggedInUsers.Remove(item.Key);
+                    }
+                }
+                HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+            }
             Session["User"] = null;
             Session["isAdmin"] = false;
 

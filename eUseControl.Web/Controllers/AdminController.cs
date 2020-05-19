@@ -29,21 +29,17 @@ namespace eUseControl.Web.Controllers
         [HttpPost]
         public ActionResult DeleteUser(string user)
         {
-
             var userDelet = _session.DeleteUser(user);
             if (userDelet)
             {
                 TempData["DeleteStatus"] = "Successful deletion!";
                 return RedirectToAction("Admin", "Admin");
-
             }
             else
             {
                 TempData["DeleteStatus"] = "Unsuccessful deletion!";
                 return RedirectToAction("Admin", "Admin");
-
             }
-
         }
 
         [HttpPost]
@@ -53,15 +49,12 @@ namespace eUseControl.Web.Controllers
             if (userAdmin)
             {
                 TempData["AddStatus"] = "Successful adding!";
-
             }
             else
             {
                 TempData["AddStatus"] = "Unexistent user!";
                 return RedirectToAction("Admin", "Admin");
-
             }
-           
             return RedirectToAction("Admin", "Admin");
         }
 

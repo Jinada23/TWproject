@@ -30,8 +30,6 @@
             }
         }
     }
-   
-
 
     string imgUrl;
     if (user.ImgUrl == null)
@@ -217,22 +215,6 @@
                                     <div class="badge badge-danger">Offline</div>
                                 }
                             </h5>
-                            @*@if (user.Role == 0)
-                                {
-                                    <span>Administrator</span>
-                                }
-                                @if (user.Role == 1)
-                                {
-                                    <span>Writer</span>
-                                }
-                                @if (user.Role == 2)
-                                {
-                                    <span>Musician</span>
-                                }
-                                @if (user.Role == 3)
-                                {
-                                    <span>Producer</span>
-                                }*@
                             @switch (user.Role)
                             {
                                 case 0:<span>Administrator</span> break;

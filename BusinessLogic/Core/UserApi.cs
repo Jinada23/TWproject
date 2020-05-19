@@ -15,7 +15,6 @@ namespace eUseControl.BusinessLogic.Core
         public List<UserData> GetAllUsers(string searchString, string sortType)
         {
             var userData = new List<UserData>();
-
             if (searchString == null && sortType != null)
             {
                 using (var db = new UserContext())
@@ -55,7 +54,6 @@ namespace eUseControl.BusinessLogic.Core
                     using (var db = new UserContext())
                     {
                         userData = db.Users.OrderBy(u => u.RegisterDate).Select(MapToUserData).ToList();
-
                     }
                 }
             }

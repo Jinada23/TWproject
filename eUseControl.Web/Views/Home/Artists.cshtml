@@ -69,21 +69,6 @@
                                     }
                                     <h5 style="margin-top:10px;">@user.Name</h5>
                                 </a>
-                                @*@if (user.Role == 0)
-                                    {
-                                        <span>Role: Administrator</span>
-                                    }@if (user.Role == 1)
-                                    {
-                                        <span>Role: Writer</span>
-                                    }
-                                    @if (user.Role == 2)
-                                    {
-                                        <span>Role: Musician</span>
-                                    }
-                                    @if (user.Role == 3)
-                                    {
-                                        <span>Role: Producer</span>
-                                    }*@
                                 @switch (user.Role)
                                 {
                                     case 0:<span>Administrator</span> break;
@@ -101,17 +86,6 @@
                 }
             }
         </div>
-
-        @*@for (int i = 0; i < Model.Count; i += 4)
-            {
-            for (int j = 0; j < 4; j++) {
-            if (i + j < Model.Count)
-            {
-            <p>@Model[i + j].Name</p>
-            }
-            }
-            }*@
-
     </div>
 </section>
 
