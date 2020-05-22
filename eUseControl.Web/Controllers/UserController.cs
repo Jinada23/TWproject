@@ -34,8 +34,7 @@ namespace eUseControl.Web.Controllers
 
 
             UserData userData = _session.userData(((UserData)Session["user"]).Username);
-            Session["User"] = userData;
-            return RedirectToAction("Users", "User", new { ((UserData)Session["user"]).Id});
+            return RedirectToAction("Users", "User", new {userData.Id});
         }
 
         [HttpGet]
