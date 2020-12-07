@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace eUseControl.Web.Controllers
 {
+    //1111
     public class AdminController : Controller
     {
         private readonly ISession _session;
